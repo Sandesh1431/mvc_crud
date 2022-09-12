@@ -2,3 +2,16 @@
 {
     width: 29%;
 }
+body {
+    background-image: url('../img/white2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  button.btn.btn-outline-success.my-2.my-sm-0.sz {
+    font-size: 19px;
+    font-weight: 800;
+}
+a.navbar-brand.szz {
+    font-size: 23px;
+}

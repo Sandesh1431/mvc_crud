@@ -167,11 +167,8 @@ class Pages extends Controller
   {
 
     if ($_POST['name'] == '' || $_POST['pass'] == '') {
-      $data = [
-
-        'title' => 'Field should not be empy!'
-      ];
-      $this->view('pages/index', $data);
+      
+      $this->view('pages/index');
     }
 
     if (($_POST['name'] != username) || ($_POST['pass'] != password)) {

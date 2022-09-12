@@ -37,11 +37,17 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
+            
 
         }
+        button.btn.btn-outline-success.my-2.my-sm-0 {
+    font-size: 19px;
+    font-weight: 800;
+}
+  
     </style>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand">Welcome</a>
+        <a class="navbar-brand szz">Welcome</a>
         <form class="form-inline" action="<?php echo URLROOT ?>" method="post">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go back</button>
         </form>
@@ -349,7 +355,9 @@
                                 <td><?php echo $state[$i];  ?></td>
                                 <td><?php echo $country[$i];  ?></td>
                                 <td><?php echo $zip[$i];  ?></td>
-                                <td><?php echo $photo[$i];  ?></td>
+                                <td class="img_pro">
+                                    <h1 style="display: none;"><?php echo $photo[$i] ?></h1><img class="img" src='http://localhost/mvc/img/<?php echo $photo[$i] ?>'>
+                                </td>
 
                             </tr>
                     <?php

@@ -10,7 +10,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="<?php echo URLROOT . 'css/login.css' ?>">
   <title></title>
-
+  <style>
+</style>
 </head>
 
 <body style="background-color: #E8E8E8">
@@ -20,23 +21,24 @@
 <div class="card" style="width: 25%;     width: 25%;
     margin-left: 42em;
     margin-top: 12em;">
-  <h5 class="card-header">Admin Login</h5>
+  <h4 class="card-header">Admin Login</h4>
   <div class="card-body">
   <div class="container">
     <h2></h2>
     <form action="<?php echo URLROOT . 'pages/login' ?>" enctype="multipart/form-data" method="post">
       <div class="form-group" style="width: 245%;">
         <label for="email">Username:</label>
-        <input type="text" class="form-control" id="email" placeholder="Enter name" name="name">
+        <input type="text" class="form-control" id="email" placeholder="Enter name" name="name" required>
       </div>
-      <div class="form-group" style="width: 245%;">
+      <div class="form-group" style="width: 245%; margin-top:1em;">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pass" style="margin-bottom: 1em;">
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password"
+         name="pass" style="margin-bottom: 1em;" required>
       </div>
       <!-- <div class="checkbox">
       <label><input type="checkbox" name="remember"> Remember me</label>
     </div> -->
-      <div class="form-group" style="margin-bottom: 1em;">
+      <div class="form-group" style="margin-bottom: 1em; color:red;">
         <?php
         if (isset($data)) {
           echo $data['title'];
@@ -54,6 +56,7 @@
 
   </div>
 </div>
+<script></script>
  
   
 <script>

@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['admin'])) {
     $var = URLROOT . 'pages/index';
-    header('Location: '.$var);
+    header('Location: ' . $var);
     exit;
 }
 
@@ -15,20 +15,7 @@ if (!isset($_SESSION['admin'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-
-    <!-- datatabel css -->
-    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
-    <!-- datatabel css ends -->
-
-    <!-- export css -->
-
-    <link rel="stylessheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <link rel="stylessheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
-
-
-    <!-- export css ends -->
-
+    <?php    include('thead.php');  ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo URLROOT . 'css/emp_add.css' ?>">
 
@@ -37,136 +24,17 @@ if (!isset($_SESSION['admin'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="<?php echo URLROOT . 'js/emp_add.js' ?>"></script>
     <style>
-        button.dt-button.buttons-excel.buttons-html5 {
-            background-color: black;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-
-        }
     </style>
     <?php
     include('nav.php');
+ 
     ?>
+
 </head>
 
-<body class="" style="background-color: #E8E8E8" >
-    <?php
-    // print_r($data['title'][0]);
-    $em = array_column($data['title'][0], 'email');
-    foreach ($em as $ky => $va) {
-        //    print_r($va);
-    }
-
-    //    print_r($va);
-    session_start();
-
-    // if(isset($_SESSION['edited']))
-
-    // print_r($_SESSION['edited']);
-    ?>
-
-    <script>
-        //    let em = document.forms['addform']['email'].value;
-
-        var emails = '<?php echo json_encode($em);  ?>';
-
-        // console.log(emails.length);
-
-        // console.log(typeof emails);
-
-        // var array = emails.split();
-
-
-        // array.forEach(function (item) {
-        //     console.log(typeof item);
-        //         });
-    </script>
-
-    <script>
-        $(function() {
-            setTimeout(function() {
-                $('#ghdiv').fadeOut('fast');
-            }, 5000); // <-- time in milliseconds
-            $('#ghdiv').val('');
-        });
-
-        function validateForm() {
-            // alert('validate');
-            let x = document.forms["editforme"]["zip"].value;
-
-            if (x.toString().length != 5) {
-                alert("Invalid zip code!");
-                return false;
-
-            }
-            let no = document.forms['editforme']['no'].value;
-
-            if (no.toString().length != 10) {
-                alert("Invalid phone no!");
-                return false;
-
-            }
-
-            let mail = document.forms["editforme"]["email"].value;
-            let position = emails.search(mail);
-            //alert ( typeof position);
-
-            if (position >= 1) {
-                alert("Email id already exist!");
-                return false;
-            }
-
-
-
-        }
-
-
-        function addvalidateForm() {
-            // alert('validate');
-            let x = document.forms["addform"]["zip"].value;
-
-            if (x.toString().length != 5) {
-                alert("Invalid zip code!");
-                return false;
-
-            }
-            let no = document.forms['addform']['no'].value;
-
-            if (no.toString().length != 10) {
-                alert("Invalid phone no!");
-                return false;
-
-            }
-
-            let mail = document.forms["addform"]["email"].value;
-            let position = emails.search(mail);
-            //alert ( typeof position);
-
-            if (position >= 1) {
-                alert("Email id already exist!");
-                return false;
-            }
-
-        }
-        //         if ( window.history.replaceState ) {
-        //   window.history.replaceState( null, null, window.location.href );
-
-        //   $(window).on('popstate', function(event) {
-        //  alert("pop");
-        // });
-        //}
-        // window.addEventListener('popstate', (event) => {
-        //     console.log(`location: ${document.location}, state: ${JSON.stringify(event.state)}`);
-        // });
-    </script>
-
-
-    <div class="container table_admin" >
+<body class="" style="background-color: #E8E8E8">
+  
+    <div class="container table_admin">
         <div style="display: flex;">
             <!-- Trigger the modal with a button -->
             <button style="margin-left: 2em; margin-bottom: 1em;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Details</button>
@@ -472,7 +340,11 @@ if (!isset($_SESSION['admin'])) {
                                 <td class="img_pro">
                                     <h1 style="display: none;"><?php echo $photo[$i] ?></h1><img class="img" src='http://localhost/mvc/img/<?php echo $photo[$i] ?>'>
                                 </td>
-                                <td><button class="btn editbtn">edit</button><a href="http://localhost/mvc/pages/deletefrm/?id=<?php echo $object_id[$i]; ?>">Delete</a></td>
+                                <td><button class="btn editbtn">edit</button>
+                                    <form action="http://localhost/mvc/pages/deletefrm/?id=<?php echo $object_id[$i]; ?>" method="post" onsubmit="return delid()" enctype="multipart/form-data">
+                                        <button class="btn delbtnn" type="submit">Delete</button>
+                                    </form>
+                                </td>
 
                             </tr>
                     <?php
@@ -524,17 +396,12 @@ if (!isset($_SESSION['admin'])) {
         });
     </script>
 
-
-
-
     <!-- datatable js cdn -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <!-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script> -->
     <!-- datatable js cdn end -->
 
 
     <!-- export -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -562,15 +429,15 @@ if (!isset($_SESSION['admin'])) {
         $(document).ready(function() {
             var edit = '<?php echo $_SESSION['edited']; ?>';
             if (edit != '') {
-                alert(edit);
+                swal("Alert!", edit);
+
             }
-            var del = '<?php echo $_SESSION['del']; ?>';
-            if (del != '') {
-                alert(del);
-            }
+            // var del = '<?php echo $_SESSION['del']; ?>';
+
+
             var add = '<?php echo $_SESSION['added']; ?>';
             if (add != '') {
-                alert(add);
+                swal("Alert!", add);
             }
 
         });
@@ -580,10 +447,6 @@ if (!isset($_SESSION['admin'])) {
     unset($_SESSION["del"]);
     unset($_SESSION["added"]);
     ?>
-
-
-
-
 
 </body>
 

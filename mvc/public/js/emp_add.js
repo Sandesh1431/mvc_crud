@@ -1,24 +1,78 @@
-var modal = document.getElementById("myModal");
+   //    let em = document.forms['addform']['email'].value;
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+   var emails = '<?php echo json_encode($em);  ?>';
+   
+       $(function() {
+           setTimeout(function() {
+               $('#ghdiv').fadeOut('fast');
+           }, 5000); // <-- time in milliseconds
+           $('#ghdiv').val('');
+       });
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+       function validateForm() {
+           // alert('validate');
+           let x = document.forms["editforme"]["zip"].value;
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
+           if (x.toString().length != 5) {
+               swal("Alert!", "Invalid zip code!");
+               return false;
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+           }
+           let no = document.forms['editforme']['no'].value;
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+           if (no.toString().length != 10) {
+               swal("Alert!", "Invalid phone no!");
+               return false;
+
+           }
+
+           let mail = document.forms["editforme"]["email"].value;
+           let position = emails.search(mail);
+           //alert ( typeof position);
+
+           if (position >= 1) {
+               swal("Alert!", "Email id already exist!");
+               return false;
+           }
+
+
+
+       }
+
+
+       function addvalidateForm() {
+           // alert('validate');
+           let x = document.forms["addform"]["zip"].value;
+
+           if (x.toString().length != 5) {
+               swal("Alert!", "Invalid zip code!");
+               return false;
+
+           }
+           let no = document.forms['addform']['no'].value;
+
+           if (no.toString().length != 10) {
+               swal("Alert!", "Invalid phone no!");
+               return false;
+
+           }
+
+           let mail = document.forms["addform"]["email"].value;
+           let position = emails.search(mail);
+           //alert ( typeof position);
+
+           if (position >= 1) {
+               swal("Alert!", "Email id already exist!");
+               return false;
+           }
+
+       }
+
+       function delid() {
+
+   var msg = confirm('Are you sure you want to delete this file!');
+   if(msg == false) {
+       return false;
+   }
+
+       }
