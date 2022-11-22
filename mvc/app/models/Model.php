@@ -4,7 +4,7 @@ class Model extends Database
 
     public function add_model($data)
     {
-
+//my pr request
         //    print_r($data[1]);
         // exit;
         $first_name =  $data[0]['first_name'];
